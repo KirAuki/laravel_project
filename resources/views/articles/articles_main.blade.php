@@ -8,17 +8,17 @@
             <form  class="article-form" action="{{ route('articles.store') }}" method="post">
                 @csrf
                 <label class="article-form__label" for="title">Заголовок</label>
-                <input class="article-form__input" type="text" name="title">
+                <input class="article-form__input" type="text" required name="title">
                 @error('title')
                 <p class="error" >{{ $message }}</p>
                 @enderror
-                <label class="article-form__label" for="desc">Текст</label>
-                <textarea class="article-form__textarea" type="text" name="desc" maxlength="400"></textarea>
+                <label class="article-form__label"   for="desc">Текст</label>
+                <textarea class="article-form__textarea" type="text" name="desc"  required maxlength="400"></textarea>
                 @error('desc')
                 <p class="error">{{ $message }}</p>
                 @enderror
                 <button class="article-form__submit-button" type="submit">Опубликовать</button>
-        </form>
+            </form>
 
         @foreach ($articles as $article)
         <a href="{{ route('articles.show', $article) }}" class="link-to-article">

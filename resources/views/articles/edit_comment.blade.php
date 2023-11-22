@@ -7,7 +7,7 @@
     <form action="{{ route('comments.update', $comment) }}" method="post">
         @csrf
         @method('put')
-        <input type="text" name="desc" value="{{$comment-> desc}}">
+        <input type="text" name="desc" required value="{{$comment-> desc}}">
         <button type="submit">Сохранить</button>
     </form>
 </div>

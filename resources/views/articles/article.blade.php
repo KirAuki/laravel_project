@@ -8,6 +8,7 @@
     <div class="article__text">
         <h3 class="article__header">{{ $article->title }}</h3>
         <p class="article__desc">{{ $article->desc }}</p>
+        @can('update', $article)
         <form  method="post" action="{{ route('articles.destroy',  $article)}}">
             @csrf
             @method("delete")
@@ -17,12 +18,13 @@
             @csrf
             <p>Редактировать</p>
         </a>
+        @endcan
     </div>
     <form class="article__comment-form" action="{{ route('comments.store', $article) }}" method="post">
             @csrf
             @method('post')
             <label for="#comment-textarea" hidden>Оставить комментарий</label>
-            <textarea placeholder="Оставьте комментарий" class="article__comment-textarea" name="comment" id="comment-textarea" class="article__comment-input" maxlength="200"></textarea>
+            <textarea placeholder="Оставьте комментарий" class="article__comment-textarea" required name="comment" id="comment-textarea" class="article__comment-input" maxlength="200"></textarea>
             <button type="submit" class="article__comment-submit">Комментировать</button>
         </form>
         <div class="article__comments-list">

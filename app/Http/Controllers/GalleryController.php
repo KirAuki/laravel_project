@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class MainController extends Controller
+class GalleryController extends Controller
 {
     public function index()
     {
@@ -15,6 +15,6 @@ class MainController extends Controller
         $data = json_decode(File::get($jsonPath), true);
         
 
-        return view('welcome', compact('data'));
+        return view('gallery', compact('data'));
     }
 }

@@ -88,7 +88,7 @@ class CommentController extends Controller
                 Cache::forget($key->key);
             }
         }
-        return redirect()->route("articles.show", ['article'=>$article, 'comments'=>$comments, 'res'=>$res]);
+        return redirect()->route("articles.show", ['article'=>$article, 'res'=>$res]);
         
     }
 

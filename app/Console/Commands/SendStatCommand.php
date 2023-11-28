@@ -47,7 +47,7 @@ class SendStatCommand extends Command
         Path::whereNotNull('id')->delete();
         $commentCount = Comment::whereDate('created_at', Carbon::today())->count();
         Log::alert(Carbon::today());
-        Mail::to('moosbeere_O@mail.ru')->send(new StatMail($articleCount, $commentCount));
+        Mail::to('kirill.akulov.04@mail.ru')->send(new StatMail($articleCount, $commentCount));
         return 0;
     }
 }

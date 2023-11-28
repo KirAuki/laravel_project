@@ -5,6 +5,7 @@
 @section('content')
     <section class="article-section section">
             <h2 class="section__header">Статьи</h2>
+            @can('create')
             <form  class="article-form" action="{{ route('articles.store') }}" method="post">
                 @csrf
                 <label class="article-form__label" for="title">Заголовок</label>
@@ -19,7 +20,7 @@
                 @enderror
                 <button class="article-form__submit-button" type="submit">Опубликовать</button>
             </form>
-
+            @endcan
         @foreach ($articles as $article)
         <a href="{{ route('articles.show', $article) }}" class="link-to-article">
             <div class="article">

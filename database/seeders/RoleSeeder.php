@@ -16,7 +16,7 @@ class RoleSeeder extends Seeder
     {
         User::create([
             'name' => 'Kirill', 
-            'email'=> 'moder@gmail.com',
+            'email'=> 'kirill.akulov.04@mail.ru',
             'password' => bcrypt('123'),
             'role'=> 'moderator'
         ]);

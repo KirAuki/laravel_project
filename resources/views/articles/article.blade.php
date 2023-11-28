@@ -29,15 +29,35 @@
         </form>
         <div class="article__comments-list">
             <h4 class="article__comments-titile">Комментарии</h4>
+            @isset($_GET['res'])
+            @if ($_GET['res'] == 1)
+            <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                Комментарий успешно добавлен и отправлен на модерацию.
+            </div>
+            @endif
+            @endisset
             @foreach ($article -> comments as $comment)
+                
+                @if($comment -> accept == 1)
                 <div class="article__comment comment">
                     <p class="comment__content">{{ $comment -> desc}}</p>
-                    <a class="comment__edit-link edit-link" href="{{ route('comments.edit', $comment, $article)}}" >
+                    @can('comment', $comment)
+                    <a class="comment__edit-link edit-link" href="{{ route('comments.edit', $comment)}}" >
                         @csrf
                         <p>Редактировать</p>
                     </a>
+                    <form  method="post" action="{{ route('comments.destroy',  $comment)}}">
+                        @csrf
+                        @method("delete")
+                        <button class="comment__delete-button" type="submit">X</button>
+                    </form>
+                    @endcan
                 </div>
-            @endforeach
+                @endif
+            @endforeach  
         </div>
 </div>
 @endsection

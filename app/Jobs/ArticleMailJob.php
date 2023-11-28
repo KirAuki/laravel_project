@@ -8,6 +8,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ArticleMail;
+use App\Models\Article;
 
 class ArticleMailJob implements ShouldQueue
 {
@@ -15,17 +18,27 @@ class ArticleMailJob implements ShouldQueue
 
     /**
      * Create a new job instance.
+     *
+     * @return void
      */
-    public function __construct()
+
+     protected $article;
+    public function __construct(Article $article)
     {
-        //
+        $this->article = $article;
     }
 
     /**
      * Execute the job.
+     *
+     * @return void
      */
-    public function handle(): void
-    {
-        Mail::to('moosbeere_O@mail.ru')->send(new ArticleMail($this->article));
+    public function handle()
+    {        
+        Mail::to('kirill.akulov.04@mail.ru')->send(new ArticleMail($this->article));
     }
 }
+
+
+
+
